@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Jalankan show version
+      arubanetworks.aos_switch.arubaoss_command:
+        commands:
+          - show version
+      register: hasil
+
+    - name: Tampilkan hasil
+      ansible.builtin.debug:
+        var: hasil
