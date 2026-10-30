@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ambil running-config
+      arubanetworks.aos_switch.arubaoss_command:
+        commands:
+          - show running-config
+      register: hasil
+
+    - name: Tampilkan jumlah baris
+      ansible.builtin.debug:
+        msg: "Jumlah baris config: {{ hasil.stdout_lines[0] | length }}"
